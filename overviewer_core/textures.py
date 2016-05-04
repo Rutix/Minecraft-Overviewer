@@ -4893,8 +4893,8 @@ def stone_brick(self, blockid, data):
     if data == 0: # raw
         top = self.load_image_texture("assets/chisel/textures/blocks/icepillar/column-top.png")
         side = self.load_image_texture("assets/chisel/textures/blocks/icepillar/column-side.png")
+        return self.build_block(top, side)
     elif data == 4: # carved ice pillar
         top = self.load_image_texture("assets/chisel/textures/blocks/icepillar/pillar-carved-top.png")
         side = self.load_image_texture("assets/chisel/textures/blocks/icepillar/pillar-carved-side.png")
-    img = self.build_block(top, side)
-    return img
+        return self.build_block(top, side)
