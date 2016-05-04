@@ -610,6 +610,24 @@ class Textures(object):
 
         return img
 
+    def build_wood_log(self, top, side, data):
+        # extract orientation from data bits
+        wood_orientation = data & 0xC
+        if self.rotation == 1:
+            if wood_orientation == 4: wood_orientation = 8
+            elif wood_orientation == 8: wood_orientation = 4
+        elif self.rotation == 3:
+            if wood_orientation == 4: wood_orientation = 8
+            elif wood_orientation == 8: wood_orientation = 4
+
+        # choose orientation and paste textures
+        if wood_orientation == 0:
+            return self.build_block(top, side)
+        elif wood_orientation == 4: # east-west orientation
+            return self.build_full_block(side.rotate(90), None, None, top, side.rotate(90))
+        elif wood_orientation == 8: # north-south orientation
+            return self.build_full_block(side, None, None, side.rotate(270), top)
+
     def build_full_block(self, top, side1, side2, side3, side4, bottom=None):
         """From a top texture, a bottom texture and 4 different side textures,
         build a full block with four differnts faces. All images should be 16x16 
@@ -4510,24 +4528,6 @@ def crops(self, blockid, data):
 #                                               #
 #################################################
 
-def build_wood_log(self, top, side, data):
-    # extract orientation from data bits
-    wood_orientation = data & 0xC
-    if self.rotation == 1:
-        if wood_orientation == 4: wood_orientation = 8
-        elif wood_orientation == 8: wood_orientation = 4
-    elif self.rotation == 3:
-        if wood_orientation == 4: wood_orientation = 8
-        elif wood_orientation == 8: wood_orientation = 4
-
-    # choose orientation and paste textures
-    if wood_orientation == 0:
-        return self.build_block(top, side)
-    elif wood_orientation == 4: # east-west orientation
-        return self.build_full_block(side.rotate(90), None, None, top, side.rotate(90))
-    elif wood_orientation == 8: # north-south orientation
-        return self.build_full_block(side, None, None, side.rotate(270), top)
-            
 # BIOMES O PLENTY: Logs 1 (I:"Log Block ID 1"=1933)
 @material(blockid=1933, data=range(16), solid=True)
 def bop_log1(self, blockid, data):
