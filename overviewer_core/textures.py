@@ -568,7 +568,7 @@ class Textures(object):
         return newimg
 
 
-    def build_block(self, top, side):
+    def build_block(self, top, side=None):
         """From a top texture and a side texture, build a block image.
         top and side should be 16x16 image objects. Returns a 24x24 image
 
