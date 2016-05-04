@@ -4502,3 +4502,239 @@ def crops(self, blockid, data):
     alpha_over(img, crop2, (6,3), crop2)
     alpha_over(img, crop3, (6,3), crop3)
     return img
+
+
+#################################################
+#                                               #
+#                BIOMES O PLENTY                #
+#                                               #
+#################################################
+
+# BIOMES O PLENTY AMETHYST
+block(blockid=[1942], top_image="assets/biomesoplenty/textures/blocks/amethystore.png")
+
+# BIOMES O PLENTY PURIFIED GRASS
+@material(blockid=169, data=range(11)+[0x10,], solid=True)
+def grass(self, blockid, data):
+    # 0x10 bit means SNOW, OR DOES IT?
+    side_img = self.load_image_texture("assets/biomesoplenty/textures/blocks/holygrass_side.png")
+    if data & 0x10:
+        side_img = self.load_image_texture("assets/biomesoplenty/textures/blocks/holygrass_top.png")
+    img = self.build_block(self.load_image_texture("assets/biomesoplenty/textures/blocks/holygrass_top.png"), side_img)
+    if not data & 0x10:
+        img = self.build_block(self.load_image_texture("assets/biomesoplenty/textures/blocks/holygrass_top.png"), side_img)
+    return img
+
+# BIOMES O PLENTY PURIFIED DIRT
+block(blockid=[255], top_image="assets/biomesoplenty/textures/blocks/holydirt.png")
+
+# BIOMES O PLENTY SKYSTONE
+@material(blockid=254, data=range(3), solid=True)
+def wooden_planks(self, blockid, data):
+    if data == 0: # skystone normal
+        return self.build_block(self.load_image_texture("assets/biomesoplenty/textures/blocks/holystone.png"), self.load_image_texture("assets/biomesoplenty/textures/blocks/holystone.png"))
+    if data == 1: # skystone cobble
+        return self.build_block(self.load_image_texture("assets/biomesoplenty/textures/blocks/holycobble.png"),self.load_image_texture("assets/biomesoplenty/textures/blocks/holycobble.png"))
+    if data == 2: # skystone bricks
+        return self.build_block(self.load_image_texture("assets/biomesoplenty/textures/blocks/holybrick.png"),self.load_image_texture("assets/biomesoplenty/textures/blocks/holybrick.png"))
+    if data == 3: # mossy skystone
+        return self.build_block(self.load_image_texture("assets/biomesoplenty/textures/blocks/holystonemossy.png"),self.load_image_texture("assets/biomesoplenty/textures/blocks/holystonemossy.png"))
+
+# BIOMES O PLENTY TALL GRASSSSS
+@material(blockid=1920, data=range(16), transparent=True)
+def tall_grass_biomes(self, blockid, data):
+    if data == 0: # dead grass
+        return self.build_billboard(self.load_image_texture("assets/biomesoplenty/textures/blocks/deadgrass.png"))
+    if data == 1: # desert grass
+        return self.build_billboard(self.load_image_texture("assets/biomesoplenty/textures/blocks/desertgrass.png"))
+    if data == 2: # desert sprouts
+        return self.build_billboard(self.load_image_texture("assets/biomesoplenty/textures/blocks/desertsprouts.png"))
+    if data == 3: #dune grass
+        return self.build_billboard(self.load_image_texture("assets/biomesoplenty/textures/blocks/dunegrass.png"))
+    if data == 4: #purified tall grass
+        return self.build_billboard(self.load_image_texture("assets/biomesoplenty/textures/blocks/holytallgrass.png"))
+    if data == 5: #thorns
+        return self.build_billboard(self.load_image_texture("assets/biomesoplenty/textures/blocks/thorn.png"))
+    if data == 6: #barley
+        return self.build_billboard(self.load_image_texture("assets/biomesoplenty/textures/blocks/barley.png"))
+    if data == 7: #cattail
+        return self.build_billboard(self.load_image_texture("assets/biomesoplenty/textures/blocks/cattail.png"))
+    if data == 8: #river cane
+        return self.build_billboard(self.load_image_texture("assets/biomesoplenty/textures/blocks/rivercane.png"))
+    if data == 12: #tiny cactus
+        return self.build_billboard(self.load_image_texture("assets/biomesoplenty/textures/blocks/cactus.png"))
+    if data == 13: #wither wart
+        return self.build_billboard(self.load_image_texture("assets/biomesoplenty/textures/blocks/witherwart.png"))
+    if data == 14: #reed
+        return self.build_billboard(self.load_image_texture("assets/biomesoplenty/textures/blocks/reed.png"))
+    if data == 15: #root
+        return self.build_billboard(self.load_image_texture("assets/biomesoplenty/textures/blocks/root.png"))
+
+# BIOMES O PLENTY LEAVES
+@material(blockid=[1924], data=range(16), transparent=True, solid=True)
+def leaves(self, blockid, data):
+    # mask out the bits 4 and 8
+    # they are used for player placed and check-for-decay blocks
+    data = data & 0x7
+    t = self.load_image_texture("assets/minecraft/textures/blocks/leaves_oak.png")
+    if (blockid, data) == (1924, 0): # dead stuff
+        t = self.load_image_texture("assets/minecraft/textures/blocks/leaves_spruce.png")
+    elif (blockid, data) == (1924, 1): # holy?
+        t = self.load_image_texture("assets/minecraft/textures/blocks/leaves_birch.png")
+    elif (blockid, data) == (1924, 2): # tjafs
+        t = self.load_image_texture("assets/minecraft/textures/blocks/leaves_jungle.png")
+    elif (blockid, data) == (1924, 3): # meh
+        t = self.load_image_texture("assets/minecraft/textures/blocks/leaves_acacia.png")
+    return self.build_block(t, t)
+
+# BIOMES O PLENTY LOGS
+@material(blockid=[1920], data=range(12), solid=True)
+def wood(self, blockid, data):
+    # extract orientation and wood type from data bits
+    wood_type = data & 3
+    wood_orientation = data & 12
+    if self.rotation == 1:
+        if wood_orientation == 4: wood_orientation = 8
+        elif wood_orientation == 8: wood_orientation = 4
+    elif self.rotation == 3:
+        if wood_orientation == 4: wood_orientation = 8
+        elif wood_orientation == 8: wood_orientation = 4
+
+    # choose textures
+    if blockid == 1920: # regular wood:
+        if wood_type == 0: # normal
+            top = self.load_image_texture("assets/minecraft/textures/blocks/log_oak_top.png")
+            side = self.load_image_texture("assets/minecraft/textures/blocks/log_oak.png")
+        if wood_type == 1: # spruce
+            top = self.load_image_texture("assets/minecraft/textures/blocks/log_spruce_top.png")
+            side = self.load_image_texture("assets/minecraft/textures/blocks/log_spruce.png")
+        if wood_type == 2: # birch
+            top = self.load_image_texture("assets/minecraft/textures/blocks/log_birch_top.png")
+            side = self.load_image_texture("assets/minecraft/textures/blocks/log_birch.png")
+        if wood_type == 3: # jungle wood
+            top = self.load_image_texture("assets/minecraft/textures/blocks/log_jungle_top.png")
+            side = self.load_image_texture("assets/minecraft/textures/blocks/log_jungle.png")
+    # choose orientation and paste textures
+    if wood_orientation == 0:
+        return self.build_block(top, side)
+    elif wood_orientation == 4: # east-west orientation
+        return self.build_full_block(side.rotate(90), None, None, top, side.rotate(90))
+    elif wood_orientation == 8: # north-south orientation
+        return self.build_full_block(side, None, None, side.rotate(270), top)
+
+
+#################################################
+#                                               #
+#                     CHISEL                    #
+#                                               #
+#################################################
+
+# CHISEL COBBLESTONE
+@material(blockid=2794, data=range(1,16), solid=True)
+def stone_brick(self, blockid, data):
+    if data == 1: # aligned bricks
+        t = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-cobb-brickaligned.png")
+    elif data == 2: # detailed bricks
+        t = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-cob-detailedbrick.png")
+    elif data == 3: # small bricks
+        t = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-cob-smallbrick.png")
+    elif data == 4: # large tiles
+        t = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-cobblargetiledark.png")
+    elif data == 5: # small tiles
+        t = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-cobbsmalltile.png")
+    elif data == 6: # french tiles
+        t = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-cob-french.png")
+    elif data == 7: # french tiles
+        t = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-cob-french2.png")
+    elif data == 8: # creeper tiles
+        t = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-cobmoss-creepdungeon.png")
+    elif data == 9: # damaged tiles
+        t = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-mossysmalltiledark.png")
+    elif data == 10: # huge tiles
+        t = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-pistonback-dungeontile.png")
+    elif data == 11: # creeper panel
+        t = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-pistonback-darkcreeper.png")
+    elif data == 12: # dent
+        t = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-pistonback-darkdent.png")
+    elif data == 13: # panel
+        t = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-pistonback-darkemboss.png")
+    elif data == 14: # light panel
+        t = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-pistonback-darkmarker.png")
+    elif data == 15: # dark panel
+        t = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-pistonback-darkpanel.png")
+    img = self.build_full_block(t, None, None, t, t)
+    return img
+
+# CHISEL STONE BRICKS
+@material(blockid=2795, data=range(4,16), solid=True)
+def stone_brick(self, blockid, data):
+    if data == 4: # small stone
+        t = self.load_image_texture("assets/chisel/textures/blocks/stonebrick/smallbricks.png")
+    elif data == 5: # wide stone
+        t = self.load_image_texture("assets/chisel/textures/blocks/stonebrick/largebricks.png")
+    elif data == 6: # small disordered
+        t = self.load_image_texture("assets/chisel/textures/blocks/stonebrick/smallchaotic.png")
+    elif data == 7: # disordered bricks
+        t = self.load_image_texture("assets/chisel/textures/blocks/stonebrick/chaoticbricks.png")
+    elif data == 8: # disordered panels
+        t = self.load_image_texture("assets/chisel/textures/blocks/stonebrick/chaotic.png")
+    elif data == 9: # fancy
+        t = self.load_image_texture("assets/chisel/textures/blocks/stonebrick/fancy.png")
+    elif data == 10: # ornate brick tiles
+        t = self.load_image_texture("assets/chisel/textures/blocks/stonebrick/ornate.png")
+    elif data == 11: # large ornate brick tiles
+        t = self.load_image_texture("assets/chisel/textures/blocks/stonebrick/largeornate.png")
+    elif data == 12: # panel
+        t = self.load_image_texture("assets/chisel/textures/blocks/stonebrick/panel-hard.png")
+    elif data == 13: # sunken panel
+        t = self.load_image_texture("assets/chisel/textures/blocks/stonebrick/sunken.png")
+    elif data == 14: # ornate panel
+        t = self.load_image_texture("assets/chisel/textures/blocks/stonebrick/ornatepanel.png")
+    elif data == 15: # poison brick
+        t = self.load_image_texture("assets/chisel/textures/blocks/stonebrick/poison.png")
+    img = self.build_full_block(t, None, None, t, t)
+    return img
+
+# CHISEL MARBLE BLOCKS
+@material(blockid=2746, data=range(0,16), solid=True)
+def stone_brick(self, blockid, data):
+    if data == 0: # raw
+        t = self.load_image_texture("assets/chisel/textures/blocks/marble/raw.png")
+    elif data == 1: # marble brick
+        top = self.load_image_texture("assets/chisel/textures/blocks/marble/a1-stoneornamental-marblebrick-top.png")
+        side = self.load_image_texture("assets/chisel/textures/blocks/marble/a1-stoneornamental-marblebrick-side.png")
+        return self.build_block(top, side)
+    elif data == 2: # classic panel
+        t = self.load_image_texture("assets/chisel/textures/blocks/marble/a1-stoneornamental-marbleclassicpanel.png")
+    elif data == 3: # ornate panel
+        t = self.load_image_texture("assets/chisel/textures/blocks/marble/a1-stoneornamental-marbleornate.png")
+    elif data == 4: # panel
+        t = self.load_image_texture("assets/chisel/textures/blocks/marble/panel.png")
+    elif data == 5: # block
+        t = self.load_image_texture("assets/chisel/textures/blocks/marble/block.png")
+    elif data == 6: # dark creeper
+        top = self.load_image_texture("assets/chisel/textures/blocks/marble/terrain-pistonback-marblecreeperdark-top.png")
+        side = self.load_image_texture("assets/chisel/textures/blocks/marble/terrain-pistonback-marblecreeperdark-side.png")
+        return self.build_block(top, side)
+    elif data == 7: # light creeper
+        top = self.load_image_texture("assets/chisel/textures/blocks/marble/terrain-pistonback-marblecreeperlight-top.png")
+        side = self.load_image_texture("assets/chisel/textures/blocks/marble/terrain-pistonback-marblecreeperlight-side.png")
+        return self.build_block(top, side)
+    elif data == 8: # carved
+        t = self.load_image_texture("assets/chisel/textures/blocks/marble/a1-stoneornamental-marblecarved.png")
+    elif data == 9: # radial carved
+        t = self.load_image_texture("assets/chisel/textures/blocks/marble/a1-stoneornamental-marblecarvedradial.png")
+    elif data == 10: # with dent
+        t = self.load_image_texture("assets/chisel/textures/blocks/marble/terrain-pistonback-marbledent.png")
+    elif data == 11: # with large dent
+        t = self.load_image_texture("assets/chisel/textures/blocks/marble/terrain-pistonback-marbledent-small.png")
+    elif data == 12: # tiles
+        t = self.load_image_texture("assets/chisel/textures/blocks/marble/marble-bricks.png")
+    elif data == 13: # arranged tiles
+        t = self.load_image_texture("assets/chisel/textures/blocks/marble/marble-arranged-bricks.png")
+    elif data == 14: # fancy tiles
+        t = self.load_image_texture("assets/chisel/textures/blocks/marble/marble-fancy-bricks.png")
+    elif data == 15: # blocks
+        t = self.load_image_texture("assets/chisel/textures/blocks/marble/marble-blocks.png")
+    img = self.build_full_block(t, None, None, t, t)
+    return img
