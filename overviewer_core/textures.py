@@ -4528,6 +4528,24 @@ def crops(self, blockid, data):
 #                                               #
 #################################################
 
+# BIOMES O PLENTY Logs 0 (I:"Log Block ID 1"=1920)
+@material(blockid=1920, data=range(12), solid=True)
+def bop_log0(self, blockid, data):
+    wood_type = data & 3
+    if wood_type == 0: # normal
+        top = self.load_image_texture("assets/minecraft/textures/blocks/log_oak_top.png")
+        side = self.load_image_texture("assets/minecraft/textures/blocks/log_oak.png")
+    elif wood_type == 1: # spruce
+        top = self.load_image_texture("assets/minecraft/textures/blocks/log_spruce_top.png")
+        side = self.load_image_texture("assets/minecraft/textures/blocks/log_spruce.png")
+    elif wood_type == 2: # birch
+        top = self.load_image_texture("assets/minecraft/textures/blocks/log_birch_top.png")
+        side = self.load_image_texture("assets/minecraft/textures/blocks/log_birch.png")
+    elif wood_type == 3: # jungle wood
+        top = self.load_image_texture("assets/minecraft/textures/blocks/log_jungle_top.png")
+        side = self.load_image_texture("assets/minecraft/textures/blocks/log_jungle.png")
+    return self.build_wood_log(top, side, data)
+
 # BIOMES O PLENTY: Logs 1 (I:"Log Block ID 1"=1933)
 @material(blockid=1933, data=range(16), solid=True)
 def bop_log1(self, blockid, data):
@@ -4587,7 +4605,7 @@ block(blockid=[1942], top_image="assets/biomesoplenty/textures/blocks/amethystor
 
 # BIOMES O PLENTY PURIFIED GRASS
 @material(blockid=169, data=range(11)+[0x10,], solid=True)
-def grass(self, blockid, data):
+def bop_purified_grass(self, blockid, data):
     # 0x10 bit means SNOW, OR DOES IT?
     side_img = self.load_image_texture("assets/biomesoplenty/textures/blocks/holygrass_side.png")
     if data & 0x10:
@@ -4602,7 +4620,7 @@ block(blockid=[255], top_image="assets/biomesoplenty/textures/blocks/holydirt.pn
 
 # BIOMES O PLENTY SKYSTONE
 @material(blockid=254, data=range(3), solid=True)
-def wooden_planks(self, blockid, data):
+def bop_skystone(self, blockid, data):
     if data == 0: # skystone normal
         return self.build_block(self.load_image_texture("assets/biomesoplenty/textures/blocks/holystone.png"))
     if data == 1: # skystone cobble
@@ -4614,7 +4632,7 @@ def wooden_planks(self, blockid, data):
 
 # BIOMES O PLENTY TALL GRASSSSS
 @material(blockid=1920, data=range(16), transparent=True)
-def tall_grass_biomes(self, blockid, data):
+def bop_grass(self, blockid, data):
     if data == 0: # dead grass
         return self.build_billboard(self.load_image_texture("assets/biomesoplenty/textures/blocks/deadgrass.png"))
     if data == 1: # desert grass
@@ -4644,7 +4662,7 @@ def tall_grass_biomes(self, blockid, data):
 
 # BIOMES O PLENTY LEAVES
 @material(blockid=[1924], data=range(16), transparent=True, solid=True)
-def leaves(self, blockid, data):
+def bop_leaves(self, blockid, data):
     # mask out the bits 4 and 8
     # they are used for player placed and check-for-decay blocks
     data = data & 0x7
@@ -4659,41 +4677,6 @@ def leaves(self, blockid, data):
         t = self.load_image_texture("assets/minecraft/textures/blocks/leaves_acacia.png")
     return self.build_block(t, t)
 
-# BIOMES O PLENTY LOGS
-@material(blockid=[1920], data=range(12), solid=True)
-def wood(self, blockid, data):
-    # extract orientation and wood type from data bits
-    wood_type = data & 3
-    wood_orientation = data & 12
-    if self.rotation == 1:
-        if wood_orientation == 4: wood_orientation = 8
-        elif wood_orientation == 8: wood_orientation = 4
-    elif self.rotation == 3:
-        if wood_orientation == 4: wood_orientation = 8
-        elif wood_orientation == 8: wood_orientation = 4
-
-    # choose textures
-    if blockid == 1920: # regular wood:
-        if wood_type == 0: # normal
-            top = self.load_image_texture("assets/minecraft/textures/blocks/log_oak_top.png")
-            side = self.load_image_texture("assets/minecraft/textures/blocks/log_oak.png")
-        if wood_type == 1: # spruce
-            top = self.load_image_texture("assets/minecraft/textures/blocks/log_spruce_top.png")
-            side = self.load_image_texture("assets/minecraft/textures/blocks/log_spruce.png")
-        if wood_type == 2: # birch
-            top = self.load_image_texture("assets/minecraft/textures/blocks/log_birch_top.png")
-            side = self.load_image_texture("assets/minecraft/textures/blocks/log_birch.png")
-        if wood_type == 3: # jungle wood
-            top = self.load_image_texture("assets/minecraft/textures/blocks/log_jungle_top.png")
-            side = self.load_image_texture("assets/minecraft/textures/blocks/log_jungle.png")
-    # choose orientation and paste textures
-    if wood_orientation == 0:
-        return self.build_block(top, side)
-    elif wood_orientation == 4: # east-west orientation
-        return self.build_full_block(side.rotate(90), None, None, top, side.rotate(90))
-    elif wood_orientation == 8: # north-south orientation
-        return self.build_full_block(side, None, None, side.rotate(270), top)
-
 
 #################################################
 #                                               #
@@ -4703,7 +4686,7 @@ def wood(self, blockid, data):
 
 # CHISEL COBBLESTONE
 @material(blockid=2794, data=range(1,16), solid=True)
-def stone_brick(self, blockid, data):
+def chisel_cobble(self, blockid, data):
     if data == 1: # aligned bricks
         t = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-cobb-brickaligned.png")
     elif data == 2: # detailed bricks
@@ -4739,7 +4722,7 @@ def stone_brick(self, blockid, data):
 
 # CHISEL STONE BRICKS
 @material(blockid=2795, data=range(4,16), solid=True)
-def stone_brick(self, blockid, data):
+def chisel_stone(self, blockid, data):
     if data == 4: # small stone
         t = self.load_image_texture("assets/chisel/textures/blocks/stonebrick/smallbricks.png")
     elif data == 5: # wide stone
@@ -4769,7 +4752,7 @@ def stone_brick(self, blockid, data):
 
 # CHISEL MARBLE BLOCKS
 @material(blockid=2746, data=range(0,16), solid=True)
-def stone_brick(self, blockid, data):
+def chisel_marble(self, blockid, data):
     if data == 0: # raw
         t = self.load_image_texture("assets/chisel/textures/blocks/marble/raw.png")
     elif data == 1: # marble brick
@@ -4813,7 +4796,7 @@ def stone_brick(self, blockid, data):
 
 # CHISEL GLASS BLOCKS
 @material(blockid=2804, data=range(1,16), solid=True)
-def stone_brick(self, blockid, data):
+def chisel_glass(self, blockid, data):
     if data == 1: # bubble glass
         t = self.load_image_texture("assets/chisel/textures/blocks/glass/terrain-glassbubble.png")
     elif data == 2: # chinese glass
@@ -4849,7 +4832,7 @@ def stone_brick(self, blockid, data):
 
 # CHISEL ICE BLOCKS
 @material(blockid=2805, data=range(1,16), solid=True)
-def stone_brick(self, blockid, data):
+def chisel_ice(self, blockid, data):
     if data == 1: # rough ice
         t = self.load_image_texture("assets/chisel/textures/blocks/ice/a1-ice-light.png")
     elif data == 2: # cobbleice
@@ -4889,7 +4872,8 @@ def stone_brick(self, blockid, data):
 
 # CHISEL ICE PILLAR BLOCKS
 @material(blockid=2772, data=range(2), solid=True)
-def stone_brick(self, blockid, data):
+def chisel_ice_pillar(self, blockid, data):
+    # TODO: do these have an orientation, like logs?
     if data == 0: # raw
         top = self.load_image_texture("assets/chisel/textures/blocks/icepillar/column-top.png")
         side = self.load_image_texture("assets/chisel/textures/blocks/icepillar/column-side.png")
