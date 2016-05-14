@@ -249,6 +249,11 @@ is_stairs(int block) {
     /*
      * Determines if a block is stairs of any material
      */
+
+    if (block >= 1952 && block <= 1961) { /* These are all biomes o plenty stairs */
+        return 1;
+    }
+
     switch (block) {
         case 53: /* oak wood stairs */
         case 67: /* cobblestone stairs */
@@ -264,6 +269,14 @@ is_stairs(int block) {
         case 164: /* dark wood stairs */
         case 180: /* red sandstone stairs */
         case 203: /* purpur stairs */
+        case 1929: /* BoP: Mud Brick Stairs */
+        case 1939: /* BoP: Red Rock Cobblestone Stairs */
+        case 1940: /* BoP: Red Rock Bricks Stairs */
+        case 1965: /* BoP: Skystone Cobblestone Stairs */
+        case 1966: /* BoP: Skystone Bricks Stairs */
+        case 1975: /* BoP: Pine Wood Stairs */
+        case 1976: /* BoP: Hellbark Wood Stairs */
+        case 1977: /* BoP: Jacaranda Wood Stairs */
             return 1;
     }
     return 0;
