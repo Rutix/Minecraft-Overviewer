@@ -5018,7 +5018,7 @@ def bop_doubleslabs1(self, blockid, data):
     return self.build_block(tex, tex)
 
 # BIOMES O PLENTY Slabs (I:"Stone Single Slab ID"=1931)
-@material(blockid=1931, data=range(16), solid=True)
+@material(blockid=1931, data=range(16), transparent=True, solid=True)
 def bop_slabs1(self, blockid, data):
     upsideDown = data & 8 == 8
     blocktype = data & 7 # Top bit indicates upper half slab
@@ -5602,7 +5602,7 @@ def chisel_marble(self, blockid, data):
     return img
 
 # CHISEL MARBLE SLABS
-@material(blockid=[2750, 2751], data=range(16), transparent=(2750, 2751), solid=True)
+@material(blockid=[2750, 2751], data=range(16), transparent=True, solid=True)
 def chisel_marble_slabs(self, blockid, data):
     texture = data
     upsideDown = False
