@@ -254,6 +254,10 @@ is_stairs(int block) {
         return 1;
     }
 
+    if (block >= 2752 && block < 2760) { /* These are all chisel marble stairs */
+        return 1;
+    }
+
     switch (block) {
         case 53: /* oak wood stairs */
         case 67: /* cobblestone stairs */

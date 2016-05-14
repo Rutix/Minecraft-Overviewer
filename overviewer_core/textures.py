@@ -5660,6 +5660,67 @@ def chisel_marble_slabs(self, blockid, data):
     
     return self.build_slab(top, side, upsideDown)
 
+# CHISEL MARBLE STAIRS
+@material(blockid=range(2752, 2760), data=range(128), transparent=True, solid=True, nospawn=True)
+def chisel_marble_stairs(self, blockid, data):
+    if (blockid == 2752):
+        if (not data & 8): # 0 raw
+            top = side = self.load_image_texture("assets/chisel/textures/blocks/marble/raw.png")
+        else: # 1
+            top =  self.load_image_texture("assets/chisel/textures/blocks/marbleslab/a1-stoneornamental-marblebrick-top.png")
+            side = self.load_image_texture("assets/chisel/textures/blocks/marbleslab/a1-stoneornamental-marblebrick-side.png")
+    elif (blockid == 2753):
+        if (not data & 8): # 2
+            top =  self.load_image_texture("assets/chisel/textures/blocks/marbleslab/a1-stoneornamental-marbleclassicpanel-top.png")
+            side = self.load_image_texture("assets/chisel/textures/blocks/marbleslab/a1-stoneornamental-marbleclassicpanel-side.png")
+        else: # 3
+            top =  self.load_image_texture("assets/chisel/textures/blocks/marbleslab/a1-stoneornamental-marbleornate-top.png")
+            side = self.load_image_texture("assets/chisel/textures/blocks/marbleslab/a1-stoneornamental-marbleornate-side.png")
+    elif (blockid == 2754):
+        if (not data & 8): # 4
+            top =  self.load_image_texture("assets/chisel/textures/blocks/marbleslab/a1-stoneornamental-marblepanel-top.png")
+            side = self.load_image_texture("assets/chisel/textures/blocks/marbleslab/a1-stoneornamental-marblepanel-side.png")
+        else: # 5
+            top =  self.load_image_texture("assets/chisel/textures/blocks/marbleslab/terrain-pistonback-marble-top.png")
+            side = self.load_image_texture("assets/chisel/textures/blocks/marbleslab/terrain-pistonback-marble-side.png")
+    elif (blockid == 2755):
+        if (not data & 8): # 6
+            top =  self.load_image_texture("assets/chisel/textures/blocks/marbleslab/terrain-pistonback-marblecreeperdark-top.png")
+            side = self.load_image_texture("assets/chisel/textures/blocks/marbleslab/terrain-pistonback-marblecreeperdark-side.png")
+        else: # 7
+            top =  self.load_image_texture("assets/chisel/textures/blocks/marbleslab/terrain-pistonback-marblecreeperlight-top.png")
+            side = self.load_image_texture("assets/chisel/textures/blocks/marbleslab/terrain-pistonback-marblecreeperlight-side.png")
+    elif (blockid == 2756):
+        if (not data & 8): # 8
+            top =  self.load_image_texture("assets/chisel/textures/blocks/marbleslab/a1-stoneornamental-marblecarved-top.png")
+            side = self.load_image_texture("assets/chisel/textures/blocks/marbleslab/a1-stoneornamental-marblecarved-side.png")
+        else: # 9
+            top =  self.load_image_texture("assets/chisel/textures/blocks/marbleslab/a1-stoneornamental-marblecarvedradial-top.png")
+            side = self.load_image_texture("assets/chisel/textures/blocks/marbleslab/a1-stoneornamental-marblecarvedradial-side.png")
+    elif (blockid == 2757):
+        if (not data & 8): # 10
+            top =  self.load_image_texture("assets/chisel/textures/blocks/marbleslab/terrain-pistonback-marbledent-top.png")
+            side = self.load_image_texture("assets/chisel/textures/blocks/marbleslab/terrain-pistonback-marbledent-side.png")
+        else: # 11
+            top =  self.load_image_texture("assets/chisel/textures/blocks/marbleslab/terrain-pistonback-marbledent-small-top.png")
+            side = self.load_image_texture("assets/chisel/textures/blocks/marbleslab/terrain-pistonback-marbledent-small-side.png")
+    elif (blockid == 2758):
+        if (not data & 8): # 12
+            top = side = self.load_image_texture("assets/chisel/textures/blocks/marbleslab/marble-bricks.png")
+        else: # 13
+            top =  self.load_image_texture("assets/chisel/textures/blocks/marbleslab/marble-arranged-bricks-top.png")
+            side = self.load_image_texture("assets/chisel/textures/blocks/marbleslab/marble-arranged-bricks-side.png")
+    elif (blockid == 2759):
+        if (not data & 8): # 14
+            top =  self.load_image_texture("assets/chisel/textures/blocks/marbleslab/marble-fancy-bricks-top.png")
+            side = self.load_image_texture("assets/chisel/textures/blocks/marbleslab/marble-fancy-bricks-side.png")
+        else: # 15
+            top = side = self.load_image_texture("assets/chisel/textures/blocks/marbleslab/marble-blocks.png")
+    else:
+        return None
+    
+    return self.build_stairs(top, side, data)
+
 # CHISEL GLASS BLOCKS
 @material(blockid=2804, data=range(1,16), solid=True)
 def chisel_glass(self, blockid, data):
