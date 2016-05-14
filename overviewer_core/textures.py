@@ -5603,7 +5603,7 @@ def chisel_marble(self, blockid, data):
 
 # CHISEL MARBLE SLABS
 @material(blockid=[2750, 2751], data=range(16), solid=True)
-def chisel_slabs(self, blockid, data):
+def chisel_marble_slabs(self, blockid, data):
     texture = data
     upsideDown = False
     if blockid == 2751:
@@ -5658,7 +5658,7 @@ def chisel_slabs(self, blockid, data):
         else:
             return None
     
-    self.build_slab(top, side, upsideDown)
+    return self.build_slab(top, side, upsideDown)
 
 # CHISEL GLASS BLOCKS
 @material(blockid=2804, data=range(1,16), solid=True)
