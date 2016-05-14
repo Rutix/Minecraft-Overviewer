@@ -5599,7 +5599,7 @@ def chisel_marble(self, blockid, data):
     return img
 
 # CHISEL MARBLE SLABS
-@material(blockid=[2750, 2751], data=range(16), transparent=(44,182,205), solid=True)
+@material(blockid=[2750, 2751], data=range(16), transparent=(2750, 2751), solid=True)
 def chisel_slabs(self, blockid, data):
     texture = data
     upsideDown = False
