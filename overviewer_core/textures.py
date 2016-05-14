@@ -5612,48 +5612,48 @@ def chisel_slabs(self, blockid, data):
     if blockid == 2750 or blockid == 2751:
         if texture== 0: # raw
             top = side = self.load_image_texture("assets/chisel/textures/blocks/marble/raw.png")
-        elif texture== 1: # brick
+        elif texture == 1: # brick
             top =  self.load_image_texture("assets/chisel/textures/blocks/marbleslab/a1-stoneornamental-marblebrick-top.png")
             side = self.load_image_texture("assets/chisel/textures/blocks/marbleslab/a1-stoneornamental-marblebrick-side.png")
-        elif texture== 2: # clasic panel
+        elif texture == 2: # clasic panel
             top =  self.load_image_texture("assets/chisel/textures/blocks/marbleslab/a1-stoneornamental-marbleclassicpanel-top.png")
             side = self.load_image_texture("assets/chisel/textures/blocks/marbleslab/a1-stoneornamental-marbleclassicpanel-side.png")
-        elif texture== 3: # ornate panel
+        elif texture == 3: # ornate panel
             top =  self.load_image_texture("assets/chisel/textures/blocks/marbleslab/a1-stoneornamental-marbleornate-top.png")
             side = self.load_image_texture("assets/chisel/textures/blocks/marbleslab/a1-stoneornamental-marbleornate-side.png")
-        elif texture== 4: # panel
+        elif texture == 4: # panel
             top =  self.load_image_texture("assets/chisel/textures/blocks/marbleslab/a1-stoneornamental-marblepanel-top.png")
             side = self.load_image_texture("assets/chisel/textures/blocks/marbleslab/a1-stoneornamental-marblepanel-side.png")
-        elif texture== 5: # block
+        elif texture == 5: # block
             top =  self.load_image_texture("assets/chisel/textures/blocks/marbleslab/terrain-pistonback-marble-top.png")
             side = self.load_image_texture("assets/chisel/textures/blocks/marbleslab/terrain-pistonback-marble-side.png")
-        elif texture== 6: # dark creeper
+        elif texture == 6: # dark creeper
             top =  self.load_image_texture("assets/chisel/textures/blocks/marbleslab/terrain-pistonback-marblecreeperdark-top.png")
             side = self.load_image_texture("assets/chisel/textures/blocks/marbleslab/terrain-pistonback-marblecreeperdark-side.png")
-        elif texture== 7: # light creeper
+        elif texture == 7: # light creeper
             top =  self.load_image_texture("assets/chisel/textures/blocks/marbleslab/terrain-pistonback-marblecreeperlight-top.png")
             side = self.load_image_texture("assets/chisel/textures/blocks/marbleslab/terrain-pistonback-marblecreeperlight-side.png")
-        elif texture== 8: # carved
+        elif texture == 8: # carved
             top =  self.load_image_texture("assets/chisel/textures/blocks/marbleslab/a1-stoneornamental-marblecarved-top.png")
             side = self.load_image_texture("assets/chisel/textures/blocks/marbleslab/a1-stoneornamental-marblecarved-side.png")
-        elif texture== 9: # radial carved
+        elif texture == 9: # radial carved
             top =  self.load_image_texture("assets/chisel/textures/blocks/marbleslab/a1-stoneornamental-marblecarvedradial-top.png")
             side = self.load_image_texture("assets/chisel/textures/blocks/marbleslab/a1-stoneornamental-marblecarvedradial-side.png")
-        elif texture== 10: # with dent
+        elif texture == 10: # with dent
             top =  self.load_image_texture("assets/chisel/textures/blocks/marbleslab/terrain-pistonback-marbledent-top.png")
             side = self.load_image_texture("assets/chisel/textures/blocks/marbleslab/terrain-pistonback-marbledent-side.png")
-        elif texture== 11: # with large dent
+        elif texture == 11: # with large dent
             top =  self.load_image_texture("assets/chisel/textures/blocks/marbleslab/terrain-pistonback-marbledent-small-top.png")
             side = self.load_image_texture("assets/chisel/textures/blocks/marbleslab/terrain-pistonback-marbledent-small-side.png")
-        elif texture== 12: # tiles
+        elif texture == 12: # tiles
             top = side = self.load_image_texture("assets/chisel/textures/blocks/marbleslab/marble-bricks.png")
-        elif texture== 13: # arranged tiles
+        elif texture == 13: # arranged tiles
             top =  self.load_image_texture("assets/chisel/textures/blocks/marbleslab/marble-arranged-bricks-top.png")
             side = self.load_image_texture("assets/chisel/textures/blocks/marbleslab/marble-arranged-bricks-side.png")
-        elif texture== 14: # fancy tiles
+        elif texture == 14: # fancy tiles
             top =  self.load_image_texture("assets/chisel/textures/blocks/marbleslab/marble-fancy-bricks-top.png")
             side = self.load_image_texture("assets/chisel/textures/blocks/marbleslab/marble-fancy-bricks-side.png")
-        elif texture== 15: # blocks
+        elif texture == 15: # blocks
             top = side = self.load_image_texture("assets/chisel/textures/blocks/marbleslab/marble-blocks.png")
         else:
             return None
