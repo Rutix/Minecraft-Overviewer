@@ -5610,7 +5610,7 @@ def chisel_marble_slabs(self, blockid, data):
         upsideDown = True
 
     if blockid == 2750 or blockid == 2751:
-        if texture== 0: # raw
+        if texture == 0: # raw
             top = side = self.load_image_texture("assets/chisel/textures/blocks/marble/raw.png")
         elif texture == 1: # brick
             top =  self.load_image_texture("assets/chisel/textures/blocks/marbleslab/a1-stoneornamental-marblebrick-top.png")
