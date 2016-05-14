@@ -5020,7 +5020,6 @@ def bop_doubleslabs1(self, blockid, data):
 @material(blockid=1931, data=range(16), solid=True)
 def bop_slabs1(self, blockid, data):
     blocktype = data & 7 # Top bit indicates upper half slab
-    upsideDown = data & 8 == 8
     if blocktype == 0: # Red Rock Cobblestone Slab
         tex = self.load_image_texture("assets/biomesoplenty/textures/blocks/redcobble.png")
     elif blocktype == 1: # Red Rock Bricks Slab
@@ -5033,7 +5032,7 @@ def bop_slabs1(self, blockid, data):
         tex = self.load_image_texture("assets/biomesoplenty/textures/blocks/holybrick.png")
     else:
         return None
-    return self.build_slab(tex, tex, upsideDown)
+    return self.build_slab(tex, tex, data)
 
 # BIOMES O PLENTY Tree Moss (I:"Tree Moss ID"=1932)
 @material(blockid=1932, data=range(16), transparent=True)
@@ -5270,7 +5269,6 @@ def bop_planks1(self, blockid, data):
 # BIOMES O PLENTY Wooden Slabs 2 (I:"Wooden Single Slab 1 ID"=1949)
 @material(blockid=[1948,1949], data=range(16), solid=True)
 def bop_doubleslabs2(self, blockid, data):
-    upsideDown = data & 8 == 8
     wood_type = data & 0x7
     if wood_type == 0: # Acacia Wood Planks/Slab
         tex = self.load_image_texture("assets/biomesoplenty/textures/blocks/plank_acacia.png")
@@ -5292,13 +5290,12 @@ def bop_doubleslabs2(self, blockid, data):
     if blockid == 1948: # Double Slabs
         return self.build_block(tex, tex)
     elif blockid == 1949: # Slabs
-        return self.build_slab(tex, tex, upsideDown)
+        return self.build_slab(tex, tex, data)
 
 # BIOMES O PLENTY Wooden Double Slabs 2 (I:"Wooden Double Slab 2 ID"=1950)
 # BIOMES O PLENTY Wooden Slabs 2 (I:"Wooden Single Slab 2 ID"=1951)
 @material(blockid=[1950,1951], data=range(16), solid=True)
 def bop_doubleslabs3(self, blockid, data):
-    upsideDown = data & 8 == 8
     wood_type = data & 0x7
     if wood_type == 0: # Redwood Wood Slab
         tex = self.load_image_texture("assets/biomesoplenty/textures/blocks/plank_redwood.png")
@@ -5316,7 +5313,7 @@ def bop_doubleslabs3(self, blockid, data):
     if blockid == 1950: # Double Slabs
         return self.build_block(tex, tex)
     elif blockid == 1951: # Slabs
-        return self.build_slab(tex, tex, upsideDown)
+        return self.build_slab(tex, tex, data)
 
 # BIOMES O PLENTY Celestial Crystal (I:"Crystal ID"=1963)
 block(blockid=1963, top_image="assets/biomesoplenty/textures/blocks/crystal.png")
@@ -5660,7 +5657,7 @@ def chisel_slabs(self, blockid, data):
         else:
             return None
     
-    self.build_slab(self, top, side, upsideDown)
+    self.build_slab(top, side, upsideDown)
 
 # CHISEL GLASS BLOCKS
 @material(blockid=2804, data=range(1,16), solid=True)
