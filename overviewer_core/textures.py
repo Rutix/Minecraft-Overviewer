@@ -5657,7 +5657,7 @@ def chisel_slabs(self, blockid, data):
         else:
             return None
     
-    build_slab(self, top, side, upsideDown)
+    self.build_slab(self, top, side, upsideDown)
 
 # CHISEL GLASS BLOCKS
 @material(blockid=2804, data=range(1,16), solid=True)
