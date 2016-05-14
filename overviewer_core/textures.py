@@ -4751,13 +4751,14 @@ block(blockid=253, top_image="assets/biomesoplenty/textures/blocks/cragrock.png"
 @material(blockid=254, data=range(3), solid=True)
 def bop_skystone(self, blockid, data):
     if data == 0: # skystone normal
-        return self.build_block(self.load_image_texture("assets/biomesoplenty/textures/blocks/holystone.png"))
+        top = side = self.load_image_texture("assets/biomesoplenty/textures/blocks/holystone.png")
     if data == 1: # skystone cobble
-        return self.build_block(self.load_image_texture("assets/biomesoplenty/textures/blocks/holycobble.png"))
+        top = side = self.load_image_texture("assets/biomesoplenty/textures/blocks/holycobble.png")
     if data == 2: # skystone bricks
-        return self.build_block(self.load_image_texture("assets/biomesoplenty/textures/blocks/holybrick.png"))
+        top = side = self.load_image_texture("assets/biomesoplenty/textures/blocks/holybrick.png")
     if data == 3: # mossy skystone
-        return self.build_block(self.load_image_texture("assets/biomesoplenty/textures/blocks/holystonemossy.png"))
+        top = side = self.load_image_texture("assets/biomesoplenty/textures/blocks/holystonemossy.png")
+    return self.build_block(top, side)
 
 # BIOMES O PLENTY PURIFIED DIRT (I:"Holy Dirt ID"=255)
 block(blockid=255, top_image="assets/biomesoplenty/textures/blocks/holydirt.png")
@@ -5494,110 +5495,107 @@ def bop_stoneformations(self, blockid, data):
 @material(blockid=2794, data=range(1,16), solid=True)
 def chisel_cobble(self, blockid, data):
     if data == 1: # aligned bricks
-        t = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-cobb-brickaligned.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-cobb-brickaligned.png")
     elif data == 2: # detailed bricks
-        t = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-cob-detailedbrick.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-cob-detailedbrick.png")
     elif data == 3: # small bricks
-        t = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-cob-smallbrick.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-cob-smallbrick.png")
     elif data == 4: # large tiles
-        t = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-cobblargetiledark.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-cobblargetiledark.png")
     elif data == 5: # small tiles
-        t = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-cobbsmalltile.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-cobbsmalltile.png")
     elif data == 6: # french tiles
-        t = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-cob-french.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-cob-french.png")
     elif data == 7: # french tiles
-        t = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-cob-french2.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-cob-french2.png")
     elif data == 8: # creeper tiles
-        t = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-cobmoss-creepdungeon.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-cobmoss-creepdungeon.png")
     elif data == 9: # damaged tiles
-        t = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-mossysmalltiledark.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-mossysmalltiledark.png")
     elif data == 10: # huge tiles
-        t = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-pistonback-dungeontile.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-pistonback-dungeontile.png")
     elif data == 11: # creeper panel
-        t = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-pistonback-darkcreeper.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-pistonback-darkcreeper.png")
     elif data == 12: # dent
-        t = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-pistonback-darkdent.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-pistonback-darkdent.png")
     elif data == 13: # panel
-        t = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-pistonback-darkemboss.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-pistonback-darkemboss.png")
     elif data == 14: # light panel
-        t = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-pistonback-darkmarker.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-pistonback-darkmarker.png")
     elif data == 15: # dark panel
-        t = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-pistonback-darkpanel.png")
-    img = self.build_block(t)
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/cobblestone/terrain-pistonback-darkpanel.png")
+    img = self.build_block(top, side)
     return img
 
 # CHISEL STONE BRICKS
 @material(blockid=2795, data=range(4,16), solid=True)
 def chisel_stone(self, blockid, data):
     if data == 4: # small stone
-        t = self.load_image_texture("assets/chisel/textures/blocks/stonebrick/smallbricks.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/stonebrick/smallbricks.png")
     elif data == 5: # wide stone
-        t = self.load_image_texture("assets/chisel/textures/blocks/stonebrick/largebricks.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/stonebrick/largebricks.png")
     elif data == 6: # small disordered
-        t = self.load_image_texture("assets/chisel/textures/blocks/stonebrick/smallchaotic.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/stonebrick/smallchaotic.png")
     elif data == 7: # disordered bricks
-        t = self.load_image_texture("assets/chisel/textures/blocks/stonebrick/chaoticbricks.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/stonebrick/chaoticbricks.png")
     elif data == 8: # disordered panels
-        t = self.load_image_texture("assets/chisel/textures/blocks/stonebrick/chaotic.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/stonebrick/chaotic.png")
     elif data == 9: # fancy
-        t = self.load_image_texture("assets/chisel/textures/blocks/stonebrick/fancy.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/stonebrick/fancy.png")
     elif data == 10: # ornate brick tiles
-        t = self.load_image_texture("assets/chisel/textures/blocks/stonebrick/ornate.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/stonebrick/ornate.png")
     elif data == 11: # large ornate brick tiles
-        t = self.load_image_texture("assets/chisel/textures/blocks/stonebrick/largeornate.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/stonebrick/largeornate.png")
     elif data == 12: # panel
-        t = self.load_image_texture("assets/chisel/textures/blocks/stonebrick/panel-hard.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/stonebrick/panel-hard.png")
     elif data == 13: # sunken panel
-        t = self.load_image_texture("assets/chisel/textures/blocks/stonebrick/sunken.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/stonebrick/sunken.png")
     elif data == 14: # ornate panel
-        t = self.load_image_texture("assets/chisel/textures/blocks/stonebrick/ornatepanel.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/stonebrick/ornatepanel.png")
     elif data == 15: # poison brick
-        t = self.load_image_texture("assets/chisel/textures/blocks/stonebrick/poison.png")
-    img = self.build_block(t)
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/stonebrick/poison.png")
+    img = self.build_block(top, side)
     return img
 
 # CHISEL MARBLE BLOCKS
 @material(blockid=2746, data=range(0,16), solid=True)
 def chisel_marble(self, blockid, data):
     if data == 0: # raw
-        t = self.load_image_texture("assets/chisel/textures/blocks/marble/raw.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/marble/raw.png")
     elif data == 1: # marble brick
         top = self.load_image_texture("assets/chisel/textures/blocks/marble/a1-stoneornamental-marblebrick-top.png")
         side = self.load_image_texture("assets/chisel/textures/blocks/marble/a1-stoneornamental-marblebrick-side.png")
-        return self.build_block(top, side)
     elif data == 2: # classic panel
-        t = self.load_image_texture("assets/chisel/textures/blocks/marble/a1-stoneornamental-marbleclassicpanel.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/marble/a1-stoneornamental-marbleclassicpanel.png")
     elif data == 3: # ornate panel
-        t = self.load_image_texture("assets/chisel/textures/blocks/marble/a1-stoneornamental-marbleornate.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/marble/a1-stoneornamental-marbleornate.png")
     elif data == 4: # panel
-        t = self.load_image_texture("assets/chisel/textures/blocks/marble/panel.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/marble/panel.png")
     elif data == 5: # block
-        t = self.load_image_texture("assets/chisel/textures/blocks/marble/block.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/marble/block.png")
     elif data == 6: # dark creeper
         top = self.load_image_texture("assets/chisel/textures/blocks/marble/terrain-pistonback-marblecreeperdark-top.png")
         side = self.load_image_texture("assets/chisel/textures/blocks/marble/terrain-pistonback-marblecreeperdark-side.png")
-        return self.build_block(top, side)
     elif data == 7: # light creeper
         top = self.load_image_texture("assets/chisel/textures/blocks/marble/terrain-pistonback-marblecreeperlight-top.png")
         side = self.load_image_texture("assets/chisel/textures/blocks/marble/terrain-pistonback-marblecreeperlight-side.png")
-        return self.build_block(top, side)
     elif data == 8: # carved
-        t = self.load_image_texture("assets/chisel/textures/blocks/marble/a1-stoneornamental-marblecarved.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/marble/a1-stoneornamental-marblecarved.png")
     elif data == 9: # radial carved
-        t = self.load_image_texture("assets/chisel/textures/blocks/marble/a1-stoneornamental-marblecarvedradial.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/marble/a1-stoneornamental-marblecarvedradial.png")
     elif data == 10: # with dent
-        t = self.load_image_texture("assets/chisel/textures/blocks/marble/terrain-pistonback-marbledent.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/marble/terrain-pistonback-marbledent.png")
     elif data == 11: # with large dent
-        t = self.load_image_texture("assets/chisel/textures/blocks/marble/terrain-pistonback-marbledent-small.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/marble/terrain-pistonback-marbledent-small.png")
     elif data == 12: # tiles
-        t = self.load_image_texture("assets/chisel/textures/blocks/marble/marble-bricks.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/marble/marble-bricks.png")
     elif data == 13: # arranged tiles
-        t = self.load_image_texture("assets/chisel/textures/blocks/marble/marble-arranged-bricks.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/marble/marble-arranged-bricks.png")
     elif data == 14: # fancy tiles
-        t = self.load_image_texture("assets/chisel/textures/blocks/marble/marble-fancy-bricks.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/marble/marble-fancy-bricks.png")
     elif data == 15: # blocks
-        t = self.load_image_texture("assets/chisel/textures/blocks/marble/marble-blocks.png")
-    img = self.build_block(t)
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/marble/marble-blocks.png")
+    img = self.build_block(top, side)
     return img
 
 # CHISEL MARBLE SLABS
@@ -5663,76 +5661,74 @@ def chisel_slabs(self, blockid, data):
 @material(blockid=2804, data=range(1,16), solid=True)
 def chisel_glass(self, blockid, data):
     if data == 1: # bubble glass
-        t = self.load_image_texture("assets/chisel/textures/blocks/glass/terrain-glassbubble.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/glass/terrain-glassbubble.png")
     elif data == 2: # chinese glass
-        t = self.load_image_texture("assets/chisel/textures/blocks/glass/terrain-glass-chinese.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/glass/terrain-glass-chinese.png")
     elif data == 3: # japanese
-        t = self.load_image_texture("assets/chisel/textures/blocks/glass/japanese.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/glass/japanese.png")
     elif data == 4: # dungeon glass
-        t = self.load_image_texture("assets/chisel/textures/blocks/glass/terrain-glassdungeon.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/glass/terrain-glassdungeon.png")
     elif data == 5: # light glass
-        t = self.load_image_texture("assets/chisel/textures/blocks/glass/terrain-glasslight.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/glass/terrain-glasslight.png")
     elif data == 6: # borderless glass
-        t = self.load_image_texture("assets/chisel/textures/blocks/glass/terrain-glassnoborder.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/glass/terrain-glassnoborder.png")
     elif data == 7: # ornate steel glass
-        t = self.load_image_texture("assets/chisel/textures/blocks/glass/terrain-glass-ornatesteel.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/glass/terrain-glass-ornatesteel.png")
     elif data == 8: # screen glass
-        t = self.load_image_texture("assets/chisel/textures/blocks/glass/terrain-glass-screen.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/glass/terrain-glass-screen.png")
     elif data == 9: # shale glass
-        t = self.load_image_texture("assets/chisel/textures/blocks/glass/terrain-glassshale.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/glass/terrain-glassshale.png")
     elif data == 10: # steel frame
-        t = self.load_image_texture("assets/chisel/textures/blocks/glass/terrain-glass-steelframe.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/glass/terrain-glass-steelframe.png")
     elif data == 11: # stone frame
-        t = self.load_image_texture("assets/chisel/textures/blocks/glass/terrain-glassstone.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/glass/terrain-glassstone.png")
     elif data == 12: # streak glass
-        t = self.load_image_texture("assets/chisel/textures/blocks/glass/terrain-glassstreak.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/glass/terrain-glassstreak.png")
     elif data == 13: # thick grid glass
-        t = self.load_image_texture("assets/chisel/textures/blocks/glass/terrain-glass-thickgrid.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/glass/terrain-glass-thickgrid.png")
     elif data == 14: # thin grid glass
-        t = self.load_image_texture("assets/chisel/textures/blocks/glass/terrain-glass-thingrid.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/glass/terrain-glass-thingrid.png")
     elif data == 15: # modern iron fence glass
-        t = self.load_image_texture("assets/chisel/textures/blocks/glass/a1-glasswindow-ironfencemodern.png")
-    img = self.build_block(t)
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/glass/a1-glasswindow-ironfencemodern.png")
+    img = self.build_block(top, side)
     return img
 
 # CHISEL ICE BLOCKS
 @material(blockid=2805, data=range(1,16), solid=True)
 def chisel_ice(self, blockid, data):
     if data == 1: # rough ice
-        t = self.load_image_texture("assets/chisel/textures/blocks/ice/a1-ice-light.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/ice/a1-ice-light.png")
     elif data == 2: # cobbleice
-        t = self.load_image_texture("assets/chisel/textures/blocks/ice/a1-stonecobble-icecobble.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/ice/a1-stonecobble-icecobble.png")
     elif data == 3: # large rough ice bricks
-        t = self.load_image_texture("assets/chisel/textures/blocks/ice/a1-netherbrick-ice.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/ice/a1-netherbrick-ice.png")
     elif data == 4: # large ice bricks
-        t = self.load_image_texture("assets/chisel/textures/blocks/ice/a1-stonecobble-icebrick.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/ice/a1-stonecobble-icebrick.png")
     elif data == 5: # small ice bricks
-        t = self.load_image_texture("assets/chisel/textures/blocks/ice/a1-stonecobble-icebricksmall.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/ice/a1-stonecobble-icebricksmall.png")
     elif data == 6: # fancy glass wall
         top = self.load_image_texture("assets/chisel/textures/blocks/ice/a1-stonecobble-icedungeon-top.png")
         side = self.load_image_texture("assets/chisel/textures/blocks/ice/a1-stonecobble-icedungeon-side.png")
-        return self.build_block(top, side)
     elif data == 7: # large ice tiles
-        t = self.load_image_texture("assets/chisel/textures/blocks/ice/a1-stonecobble-icefour.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/ice/a1-stonecobble-icefour.png")
     elif data == 8: # fancy ice tiles
-        t = self.load_image_texture("assets/chisel/textures/blocks/ice/a1-stonecobble-icefrench.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/ice/a1-stonecobble-icefrench.png")
     elif data == 9: # sunken ice tiles
-        t = self.load_image_texture("assets/chisel/textures/blocks/ice/sunkentiles.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/ice/sunkentiles.png")
     elif data == 10: # disordered ice tiles
-        t = self.load_image_texture("assets/chisel/textures/blocks/ice/tiles.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/ice/tiles.png")
     elif data == 11: # ice panel
-        t = self.load_image_texture("assets/chisel/textures/blocks/ice/a1-stonecobble-icepanel.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/ice/a1-stonecobble-icepanel.png")
     elif data == 12: # double ice slab
         top = self.load_image_texture("assets/chisel/textures/blocks/ice/a1-stoneslab-ice-top.png")
         side = self.load_image_texture("assets/chisel/textures/blocks/ice/a1-stoneslab-ice-side.png")
-        return self.build_block(top, side)
     elif data == 13: # zelda ice block
-        t = self.load_image_texture("assets/chisel/textures/blocks/ice/zelda.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/ice/zelda.png")
     elif data == 14: # ice bismuth
-        t = self.load_image_texture("assets/chisel/textures/blocks/ice/bismuth.png")
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/ice/bismuth.png")
     elif data == 15: # ice poison
-        t = self.load_image_texture("assets/chisel/textures/blocks/ice/poison.png")
-    img = self.build_block(t)
+        top = side = self.load_image_texture("assets/chisel/textures/blocks/ice/poison.png")
+    img = self.build_block(top, side)
     return img
 
 # CHISEL ICE PILLAR BLOCKS
