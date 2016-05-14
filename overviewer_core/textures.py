@@ -4964,41 +4964,41 @@ block(blockid=1928, top_image="assets/biomesoplenty/textures/blocks/mudbrick.png
 @material(blockid=[1929,1939,1940,1952,1953,1954,1955,1956,1957,1958,1959,1960,1961,1965,1966,1975,1976,1977], data=range(128), transparent=True, solid=True, nospawn=True)
 def bop_stairs(self, blockid, data):
     if blockid == 1929: # Mud Brick Stairs
-        tex = self.load_image_texture("assets/biomesoplenty/textures/blocks/mudbrick.png").copy()
+        tex = self.load_image_texture("assets/biomesoplenty/textures/blocks/mudbrick.png")
     elif blockid == 1939: # Red Rock Cobblestone Stairs
-        tex = self.load_image_texture("assets/biomesoplenty/textures/blocks/redcobble.png").copy()
+        tex = self.load_image_texture("assets/biomesoplenty/textures/blocks/redcobble.png")
     elif blockid == 1940: # Red Rock Bricks Stairs
-        tex = self.load_image_texture("assets/biomesoplenty/textures/blocks/redbrick.png").copy()
+        tex = self.load_image_texture("assets/biomesoplenty/textures/blocks/redbrick.png")
     elif blockid == 1952: # Acacia Wood Stairs
-        tex = self.load_image_texture("assets/biomesoplenty/textures/blocks/plank_acacia.png").copy()
+        tex = self.load_image_texture("assets/biomesoplenty/textures/blocks/plank_acacia.png")
     elif blockid == 1953: # Cherry Wood Stairs
-        tex = self.load_image_texture("assets/biomesoplenty/textures/blocks/plank_cherry.png").copy()
+        tex = self.load_image_texture("assets/biomesoplenty/textures/blocks/plank_cherry.png")
     elif blockid == 1954: # Dark Wood Stairs
-        tex = self.load_image_texture("assets/biomesoplenty/textures/blocks/plank_dark.png").copy()
+        tex = self.load_image_texture("assets/biomesoplenty/textures/blocks/plank_dark.png")
     elif blockid == 1955: # Fir Wood Stairs
-        tex = self.load_image_texture("assets/biomesoplenty/textures/blocks/plank_fir.png").copy()
+        tex = self.load_image_texture("assets/biomesoplenty/textures/blocks/plank_fir.png")
     elif blockid == 1956: # Loftwood Wood Stairs
-        tex = self.load_image_texture("assets/biomesoplenty/textures/blocks/plank_holy.png").copy()
+        tex = self.load_image_texture("assets/biomesoplenty/textures/blocks/plank_holy.png")
     elif blockid == 1957: # Magic Wood Stairs
-        tex = self.load_image_texture("assets/biomesoplenty/textures/blocks/plank_magic.png").copy()
+        tex = self.load_image_texture("assets/biomesoplenty/textures/blocks/plank_magic.png")
     elif blockid == 1958: # Mangrove Wood Stairs
-        tex = self.load_image_texture("assets/biomesoplenty/textures/blocks/plank_mangrove.png").copy()
+        tex = self.load_image_texture("assets/biomesoplenty/textures/blocks/plank_mangrove.png")
     elif blockid == 1959: # Palm Wood Stairs
-        tex = self.load_image_texture("assets/biomesoplenty/textures/blocks/plank_palm.png").copy()
+        tex = self.load_image_texture("assets/biomesoplenty/textures/blocks/plank_palm.png")
     elif blockid == 1960: # Redwood Wood Stairs
-        tex = self.load_image_texture("assets/biomesoplenty/textures/blocks/plank_redwood.png").copy()
+        tex = self.load_image_texture("assets/biomesoplenty/textures/blocks/plank_redwood.png")
     elif blockid == 1961: # Willow Wood Stairs
-        tex = self.load_image_texture("assets/biomesoplenty/textures/blocks/plank_willow.png").copy()
+        tex = self.load_image_texture("assets/biomesoplenty/textures/blocks/plank_willow.png")
     elif blockid == 1965: # Skystone Cobblestone Stairs
-        tex = self.load_image_texture("assets/biomesoplenty/textures/blocks/holycobble.png").copy()
+        tex = self.load_image_texture("assets/biomesoplenty/textures/blocks/holycobble.png")
     elif blockid == 1966: # Skystone Bricks Stairs
-        tex = self.load_image_texture("assets/biomesoplenty/textures/blocks/holybrick.png").copy()
+        tex = self.load_image_texture("assets/biomesoplenty/textures/blocks/holybrick.png")
     elif blockid == 1975: # Pine Wood Stairs
-        tex = self.load_image_texture("assets/biomesoplenty/textures/blocks/plank_pine.png").copy()
+        tex = self.load_image_texture("assets/biomesoplenty/textures/blocks/plank_pine.png")
     elif blockid == 1976: # Hellbark Wood Stairs
-        tex = self.load_image_texture("assets/biomesoplenty/textures/blocks/plank_hell_bark.png").copy()
+        tex = self.load_image_texture("assets/biomesoplenty/textures/blocks/plank_hell_bark.png")
     elif blockid == 1977: # Jacaranda Wood Stairs
-        tex = self.load_image_texture("assets/biomesoplenty/textures/blocks/plank_jacaranda.png").copy()
+        tex = self.load_image_texture("assets/biomesoplenty/textures/blocks/plank_jacaranda.png")
     return self.build_stairs(tex, tex, data)
 
 
